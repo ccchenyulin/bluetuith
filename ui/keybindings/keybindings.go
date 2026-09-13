@@ -77,7 +77,7 @@ const (
 	ContextApp      Context = "App"
 	ContextDevice   Context = "Device"
 	ContextFiles    Context = "Files"
-	ContextProgress Context = "Progress"
+	ContextProgress Context = "进度"
 )
 
 // KeyData stores the metadata for the key.
@@ -394,139 +394,139 @@ func (k *Keybindings) initKeys() {
 func (k *Keybindings) initData() {
 	k.keyData = map[Key]*KeyData{
 		KeySwitch: {
-			Title:   "Switch",
+			Title:   "切换",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyTab, ' ', tcell.ModNone},
 			Global:  true,
 		},
 		KeyClose: {
-			Title:   "Close",
+			Title:   "关闭",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyEscape, ' ', tcell.ModNone},
 			Global:  true,
 		},
 		KeyQuit: {
-			Title:   "Quit",
+			Title:   "退出",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyRune, 'Q', tcell.ModNone},
 			Global:  true,
 		},
 		KeyMenu: {
-			Title:   "Menu",
+			Title:   "菜单",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyRune, 'm', tcell.ModAlt},
 		},
 		KeySelect: {
-			Title:   "Select",
+			Title:   "选择",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyEnter, ' ', tcell.ModNone},
 			Global:  true,
 		},
 		KeyCancel: {
-			Title:   "Cancel",
+			Title:   "取消",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyCtrlX, ' ', tcell.ModCtrl},
 			Global:  true,
 		},
 		KeySuspend: {
-			Title:   "Suspend",
+			Title:   "挂起",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyCtrlZ, ' ', tcell.ModCtrl},
 			Global:  true,
 		},
 		KeyHelp: {
-			Title:   "Help",
+			Title:   "帮助",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyRune, '?', tcell.ModShift},
 			Global:  true,
 		},
 		KeyNavigateUp: {
-			Title:   "Navigate Up",
+			Title:   "上移",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyUp, ' ', tcell.ModNone},
 		},
 		KeyNavigateDown: {
-			Title:   "Navigate Down",
+			Title:   "下移",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyDown, ' ', tcell.ModNone},
 		},
 		KeyNavigateRight: {
-			Title:   "Navigate Right",
+			Title:   "右移",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyRight, ' ', tcell.ModNone},
 		},
 		KeyNavigateLeft: {
-			Title:   "Navigate Left",
+			Title:   "左移",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyLeft, ' ', tcell.ModNone},
 		},
 		KeyNavigateTop: {
-			Title:   "Navigate Top",
+			Title:   "移到顶部",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyPgUp, ' ', tcell.ModNone},
 		},
 		KeyNavigateBottom: {
-			Title:   "Navigate Bottom",
+			Title:   "移到底部",
 			Context: ContextApp,
 			Kb:      Keybinding{tcell.KeyPgDn, ' ', tcell.ModNone},
 		},
 		KeyAdapterTogglePower: {
-			Title:   "Power",
+			Title:   "电源",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'o', tcell.ModNone},
 		},
 		KeyAdapterToggleDiscoverable: {
-			Title:   "Discoverable",
+			Title:   "可被发现",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'S', tcell.ModNone},
 		},
 		KeyAdapterTogglePairable: {
-			Title:   "Pairable",
+			Title:   "可配对",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'P', tcell.ModNone},
 		},
 		KeyAdapterToggleScan: {
-			Title:   "Scan",
+			Title:   "扫描",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 's', tcell.ModNone},
 		},
 		KeyAdapterChange: {
-			Title:   "Change",
+			Title:   "切换",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'a', tcell.ModNone},
 		},
 		KeyDeviceConnect: {
-			Title:   "Connect",
+			Title:   "连接",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'c', tcell.ModNone},
 		},
 		KeyDevicePair: {
-			Title:   "Pair",
+			Title:   "配对",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'p', tcell.ModNone},
 		},
 		KeyDeviceTrust: {
-			Title:   "Trust",
+			Title:   "信任",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 't', tcell.ModNone},
 		},
 		KeyDeviceBlock: {
-			Title:   "Block",
+			Title:   "阻止",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'b', tcell.ModNone},
 		},
 		KeyDeviceSendFiles: {
-			Title:   "Send",
+			Title:   "发送",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'f', tcell.ModNone},
 		},
 		KeyDeviceNetwork: {
-			Title:   "Network Options",
+			Title:   "网络选项",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'n', tcell.ModNone},
 		},
 		KeyDeviceAudioProfiles: {
-			Title:   "Audio Profiles",
+			Title:   "音频配置",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'A', tcell.ModNone},
 		},
@@ -536,107 +536,107 @@ func (k *Keybindings) initData() {
 			Kb:      Keybinding{tcell.KeyRune, 'i', tcell.ModNone},
 		},
 		KeyDeviceRemove: {
-			Title:   "Remove",
+			Title:   "移除",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'd', tcell.ModNone},
 		},
 		KeyPlayerShow: {
-			Title:   "Show Media Player",
+			Title:   "显示播放器",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'm', tcell.ModNone},
 		},
 		KeyPlayerHide: {
-			Title:   "Hide Media Player",
+			Title:   "隐藏播放器",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, 'M', tcell.ModNone},
 		},
 		KeyPlayerTogglePlay: {
-			Title:   "Play/Pause",
+			Title:   "播放/暂停",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, ' ', tcell.ModNone},
 		},
 		KeyPlayerNext: {
-			Title:   "Next",
+			Title:   "下一个",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, '>', tcell.ModNone},
 		},
 		KeyPlayerPrevious: {
-			Title:   "Previous",
+			Title:   "上一个",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, '<', tcell.ModNone},
 		},
 		KeyPlayerSeekForward: {
-			Title:   "Seek Forward",
+			Title:   "快进",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRight, ' ', tcell.ModNone},
 		},
 		KeyPlayerSeekBackward: {
-			Title:   "Seek Backward",
+			Title:   "快退",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyLeft, ' ', tcell.ModNone},
 		},
 		KeyPlayerStop: {
-			Title:   "Stop",
+			Title:   "停止",
 			Context: ContextDevice,
 			Kb:      Keybinding{tcell.KeyRune, ']', tcell.ModNone},
 		},
 		KeyFilebrowserConfirmSelection: {
-			Title:   "Confirm Selection",
+			Title:   "确认选择",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyCtrlS, ' ', tcell.ModCtrl},
 		},
 		KeyFilebrowserDirForward: {
-			Title:   "Go Forward",
+			Title:   "进入目录",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyRight, ' ', tcell.ModNone},
 		},
 		KeyFilebrowserDirBack: {
-			Title:   "Go Back",
+			Title:   "返回上级",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyLeft, ' ', tcell.ModNone},
 		},
 		KeyFilebrowserSelect: {
-			Title:   "Select",
+			Title:   "选择",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyRune, ' ', tcell.ModNone},
 		},
 		KeyFilebrowserInvertSelection: {
-			Title:   "Invert Selection",
+			Title:   "反选",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyRune, 'a', tcell.ModNone},
 		},
 		KeyFilebrowserSelectAll: {
-			Title:   "Select All",
+			Title:   "全选",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyRune, 'A', tcell.ModNone},
 		},
 		KeyFilebrowserRefresh: {
-			Title:   "Refresh",
+			Title:   "刷新",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyCtrlR, ' ', tcell.ModCtrl},
 		},
 		KeyFilebrowserToggleHidden: {
-			Title:   "Hidden",
+			Title:   "隐藏文件",
 			Context: ContextFiles,
 			Kb:      Keybinding{tcell.KeyRune, 'h', tcell.ModCtrl},
 		},
 		KeyProgressTransferResume: {
-			Title:   "Resume Transfer",
+			Title:   "恢复传输",
 			Context: ContextProgress,
 			Kb:      Keybinding{tcell.KeyRune, 'g', tcell.ModNone},
 		},
 		KeyProgressTransferCancel: {
-			Title:   "Cancel Transfer",
+			Title:   "取消传输",
 			Context: ContextProgress,
 			Kb:      Keybinding{tcell.KeyRune, 'x', tcell.ModNone},
 		},
 		KeyProgressView: {
-			Title:   "View Downloads",
+			Title:   "查看下载",
 			Context: ContextProgress,
 			Kb:      Keybinding{tcell.KeyRune, 'v', tcell.ModNone},
 		},
 		KeyProgressTransferSuspend: {
-			Title:   "Suspend Transfer",
+			Title:   "挂起传输",
 			Context: ContextProgress,
 			Kb:      Keybinding{tcell.KeyRune, 'z', tcell.ModNone},
 		},

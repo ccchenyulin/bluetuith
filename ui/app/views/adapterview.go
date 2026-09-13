@@ -225,27 +225,32 @@ func (a *adapterView) updateTopStatus() {
 	}
 
 	for _, status := range []struct {
-		Title   string
+		Title   string  // 内部标识符（用于 tview 区域名与逻辑比较，不翻译）
+		Text    string  // 界面显示文字
 		Enabled optional.Optional[bool]
 		Color   theme.Context
 	}{
 		{
 			Title:   "Powered",
+			Text:    "电源",
 			Enabled: props.Powered,
 			Color:   theme.ThemeAdapterPowered,
 		},
 		{
 			Title:   "Scanning",
+			Text:    "扫描中",
 			Enabled: props.Discovering,
 			Color:   theme.ThemeAdapterScanning,
 		},
 		{
 			Title:   "Discoverable",
+			Text:    "可被发现",
 			Enabled: props.Discoverable,
 			Color:   theme.ThemeAdapterDiscoverable,
 		},
 		{
 			Title:   "Pairable",
+			Text:    "可配对",
 			Enabled: props.Pairable,
 			Color:   theme.ThemeAdapterPairable,
 		},
@@ -259,7 +264,7 @@ func (a *adapterView) updateTopStatus() {
 				continue
 			}
 
-			status.Title = "Not " + status.Title
+			status.Text = "未" + status.Text
 			status.Color = "AdapterNotPowered"
 		}
 
@@ -267,7 +272,7 @@ func (a *adapterView) updateTopStatus() {
 		bgColor := theme.ThemeConfig[status.Color]
 
 		region := strings.ToLower(status.Title)
-		fmt.Fprintf(a.topStatus, "[\"%s\"][%s:%s:b] %s [-:-:-][\"\"] ", region, textColor, bgColor, status.Title)
+		fmt.Fprintf(a.topStatus, "[\"%s\"][%s:%s:b] %s [-:-:-][\"\"] ", region, textColor, bgColor, status.Text)
 	}
 }
 
@@ -283,7 +288,7 @@ func (a *adapterView) setStates() {
 
 	seq, ok := properties["sequence"]
 	if !ok {
-		a.status.InfoMessage("Cannot get adapter states", false)
+		a.status.InfoMessage("无法获取适配器状态", false)
 		return
 	}
 
@@ -293,7 +298,7 @@ func (a *adapterView) setStates() {
 
 		state, ok := properties[property]
 		if !ok {
-			a.status.InfoMessage("Cannot set adapter "+property+" state", false)
+			a.status.InfoMessage("无法设置适配器 "+property+" state", false)
 			return
 		}
 

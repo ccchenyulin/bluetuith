@@ -190,7 +190,7 @@ func (m *mediaPlayer) renderTrackData(infoView, titleView, trackView *tview.Text
 	number := strconv.FormatUint(uint64(trackData.TrackNumber), 10)
 	total := strconv.FormatUint(uint64(trackData.TotalTracks), 10)
 
-	track := "Track " + number + "/" + total
+	track := "曲目 " + number + "/" + total
 
 	titleView.SetText(trackData.Title)
 	infoView.SetText(trackData.Artist + " - " + trackData.Album)

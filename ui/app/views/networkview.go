@@ -54,20 +54,20 @@ func (n *networkView) networkSelect() {
 	if device.HaveService(bluetooth.PanuServiceClass) {
 		connTypes = append(connTypes, nwTypeDesc{
 			bluetooth.NetworkPanu,
-			"Personal Area Network",
+			"个人区域网（PAN）",
 		})
 	}
 	if device.HaveService(bluetooth.DialupNetServiceClass) {
 		connTypes = append(connTypes, nwTypeDesc{
 			bluetooth.NetworkDun,
-			"Dialup Network",
+			"拨号网络（DUN）",
 		})
 	}
 
 	deviceName := getDeviceDisplayName(device.DeviceEventData)
 
 	if connTypes == nil {
-		n.status.InfoMessage("No network options exist for "+deviceName, false)
+		n.status.InfoMessage("没有可用的网络选项："+deviceName, false)
 		return
 	}
 
@@ -135,13 +135,13 @@ func (n *networkView) networkConnect(device bluetooth.DeviceData, connType bluet
 
 	n.op.startOperation(
 		func() {
-			n.status.InfoMessage("Connecting to "+info, true)
+			n.status.InfoMessage("正在连接 "+info, true)
 			err := n.app.Session().Network(device.DeviceAddress).Connect(deviceName, connType)
 			if err != nil {
 				n.status.ErrorMessage(err)
 				return
 			}
-			n.status.InfoMessage("Connected to "+info, false)
+			n.status.InfoMessage("已连接到 "+info, false)
 		},
 		func() {
 			err := n.app.Session().Network(device.DeviceAddress).Disconnect()
@@ -149,7 +149,7 @@ func (n *networkView) networkConnect(device bluetooth.DeviceData, connType bluet
 				n.status.ErrorMessage(err)
 				return
 			}
-			n.status.InfoMessage("Cancelled connection to "+info, false)
+			n.status.InfoMessage("已取消连接到 "+info, false)
 		},
 	)
 }

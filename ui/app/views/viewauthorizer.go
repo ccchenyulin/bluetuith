@@ -82,7 +82,7 @@ func (a *authorizer) DisplayPinCode(timeout bluetooth.AuthTimeout, pincode strin
 		getDeviceDisplayName(device.DeviceEventData), pincode,
 	)
 
-	modal := a.generateDisplayModal(address, "pincode", "Pin Code", msg)
+	modal := a.generateDisplayModal(address, "pincode", "PIN 码", msg)
 	modal.display(timeout)
 
 	return nil
@@ -110,7 +110,7 @@ func (a *authorizer) DisplayPasskey(timeout bluetooth.AuthTimeout, passkey uint3
 		msg += fmt.Sprintf("\n\nYou have entered %d", entered)
 	}
 
-	modal := a.generateDisplayModal(address, "passkey-display", "Passkey Display", msg)
+	modal := a.generateDisplayModal(address, "passkey-display", "配对码显示", msg)
 	modal.display(timeout)
 
 	return nil
@@ -132,10 +132,10 @@ func (a *authorizer) ConfirmPasskey(timeout bluetooth.AuthTimeout, passkey uint3
 		getDeviceDisplayName(device.DeviceEventData), passkey,
 	)
 
-	modal := a.generateConfirmModal(address, "passkey-confirm", "Passkey Confirmation", msg)
+	modal := a.generateConfirmModal(address, "passkey-confirm", "配对码确认", msg)
 	reply := modal.getReply(timeout)
 	if reply != "y" {
-		return errors.New("Reply was: " + reply)
+		return errors.New("回复为: " + reply)
 	}
 
 	_ = a.v.app.Session().Device(address).SetTrusted(true)
@@ -155,10 +155,10 @@ func (a *authorizer) AuthorizePairing(timeout bluetooth.AuthTimeout, address blu
 	}
 	msg := fmt.Sprintf("Confirm pairing with [::bu]%s[-:-:-]", getDeviceDisplayName(device.DeviceEventData))
 
-	modal := a.generateConfirmModal(address, "pairing-confirm", "Pairing Confirmation", msg)
+	modal := a.generateConfirmModal(address, "pairing-confirm", "配对确认", msg)
 	reply := modal.getReply(timeout)
 	if reply != "y" {
-		return errors.New("Reply was: " + reply)
+		return errors.New("回复为: " + reply)
 	}
 
 	_ = a.v.app.Session().Device(address).SetTrusted(true)

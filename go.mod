@@ -1,4 +1,4 @@
-module github.com/bluetuith-org/bluetuith
+module github.com/darkhz/bluetuith
 
 go 1.25.0
 

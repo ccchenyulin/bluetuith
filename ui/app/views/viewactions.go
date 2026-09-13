@@ -247,13 +247,13 @@ func (v *viewActions) scan(set ...string) bool {
 			v.rv.status.ErrorMessage(err)
 			return false
 		}
-		v.rv.status.InfoMessage("Scanning for devices...", true)
+		v.rv.status.InfoMessage("正在扫描设备…", true)
 	} else {
 		if err := v.rv.app.Session().Adapter(props.AdapterAddress).StopDiscovery(); err != nil {
 			v.rv.status.ErrorMessage(err)
 			return false
 		}
-		v.rv.status.InfoMessage("Scanning stopped", false)
+		v.rv.status.InfoMessage("扫描已停止", false)
 	}
 
 	v.rv.menu.toggleItemByKey(keybindings.KeyAdapterToggleScan, !discover)
@@ -282,7 +282,7 @@ func (v *viewActions) progress(_ ...string) bool {
 // quit stops discovery mode for all existing adapters, closes the bluetooth connection
 // and exits the application.
 func (v *viewActions) quit(_ ...string) bool {
-	if v.rv.cfg.Values.ConfirmOnQuit && v.rv.status.SetInput("Quit (y/n)?") != "y" {
+	if v.rv.cfg.Values.ConfirmOnQuit && v.rv.status.SetInput("退出 (y/n)？") != "y" {
 		return false
 	}
 
@@ -452,12 +452,12 @@ func (v *viewActions) connect(set ...string) bool {
 	}
 
 	connectFunc := func() {
-		v.rv.status.InfoMessage("Connecting to "+getDeviceDisplayName(device.DeviceEventData), true)
+		v.rv.status.InfoMessage("正在连接 "+getDeviceDisplayName(device.DeviceEventData), true)
 		if err := v.rv.app.Session().Device(device.DeviceAddress).Connect(); err != nil {
 			v.rv.status.ErrorMessage(err)
 			return
 		}
-		v.rv.status.InfoMessage("Connected to "+getDeviceDisplayName(device.DeviceEventData), false)
+		v.rv.status.InfoMessage("已连接到 "+getDeviceDisplayName(device.DeviceEventData), false)
 	}
 
 	if !connected {
@@ -465,13 +465,13 @@ func (v *viewActions) connect(set ...string) bool {
 			connectFunc,
 			func() {
 				disconnectFunc()
-				v.rv.status.InfoMessage("Cancelled connection to "+getDeviceDisplayName(device.DeviceEventData), false)
+				v.rv.status.InfoMessage("已取消连接到 "+getDeviceDisplayName(device.DeviceEventData), false)
 			},
 		)
 	} else {
-		v.rv.status.InfoMessage("Disconnecting from "+getDeviceDisplayName(device.DeviceEventData), true)
+		v.rv.status.InfoMessage("正在断开 "+getDeviceDisplayName(device.DeviceEventData), true)
 		disconnectFunc()
-		v.rv.status.InfoMessage("Disconnected from "+getDeviceDisplayName(device.DeviceEventData), false)
+		v.rv.status.InfoMessage("已断开 "+getDeviceDisplayName(device.DeviceEventData), false)
 	}
 
 	v.rv.menu.toggleItemByKey(keybindings.KeyDeviceConnect, !connected)
@@ -497,19 +497,19 @@ func (v *viewActions) pair(_ ...string) bool {
 
 	v.rv.op.startOperation(
 		func() {
-			v.rv.status.InfoMessage("Pairing with "+getDeviceDisplayName(device.DeviceEventData), true)
+			v.rv.status.InfoMessage("正在配对 "+getDeviceDisplayName(device.DeviceEventData), true)
 			if err := v.rv.app.Session().Device(device.DeviceAddress).Pair(); err != nil {
 				v.rv.status.ErrorMessage(err)
 				return
 			}
-			v.rv.status.InfoMessage("Paired with "+getDeviceDisplayName(device.DeviceEventData), false)
+			v.rv.status.InfoMessage("已配对 "+getDeviceDisplayName(device.DeviceEventData), false)
 		},
 		func() {
 			if err := v.rv.app.Session().Device(device.DeviceAddress).CancelPairing(); err != nil {
 				v.rv.status.ErrorMessage(err)
 				return
 			}
-			v.rv.status.InfoMessage("Cancelled pairing with "+getDeviceDisplayName(device.DeviceEventData), false)
+			v.rv.status.InfoMessage("已取消配对 "+getDeviceDisplayName(device.DeviceEventData), false)
 		},
 	)
 
@@ -587,7 +587,7 @@ func (v *viewActions) send(_ ...string) bool {
 
 	v.rv.op.startOperation(
 		func() {
-			v.rv.status.InfoMessage("Initializing Object Push session..", true)
+			v.rv.status.InfoMessage("正在初始化对象推送会话…", true)
 			oppSession := v.rv.app.Session().Obex(device.DeviceAddress).ObjectPush()
 
 			err := oppSession.CreateSession(ctx)
@@ -598,7 +598,7 @@ func (v *viewActions) send(_ ...string) bool {
 
 			v.rv.op.cancelOperation(false)
 
-			v.rv.status.InfoMessage("Created Object Push session", false)
+			v.rv.status.InfoMessage("对象推送会话已建立", false)
 
 			fileList, err := v.rv.filepicker.Show()
 			if err != nil {
@@ -627,7 +627,7 @@ func (v *viewActions) send(_ ...string) bool {
 		},
 		func() {
 			cancel()
-			v.rv.status.InfoMessage("Cancelled Object Push session creation", false)
+			v.rv.status.InfoMessage("已取消建立对象推送会话", false)
 		},
 	)
 
@@ -682,7 +682,7 @@ func (v *viewActions) remove(_ ...string) bool {
 		return false
 	}
 
-	if txt := v.rv.status.SetInput("Remove " + getDeviceDisplayName(device.DeviceEventData) + " (y/n)?"); txt != "y" {
+	if txt := v.rv.status.SetInput("移除 " + getDeviceDisplayName(device.DeviceEventData) + " (y/n)?"); txt != "y" {
 		return false
 	}
 
@@ -691,7 +691,7 @@ func (v *viewActions) remove(_ ...string) bool {
 		return false
 	}
 
-	v.rv.status.InfoMessage("Removed "+getDeviceDisplayName(device.DeviceEventData), false)
+	v.rv.status.InfoMessage("已移除 "+getDeviceDisplayName(device.DeviceEventData), false)
 
 	return true
 }

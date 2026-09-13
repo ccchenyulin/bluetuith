@@ -177,7 +177,7 @@ func (s *statusBarView) ErrorMessage(err error) {
 	}
 
 	select {
-	case s.msgchan <- message{theme.ColorWrap(theme.ThemeStatusError, "Error: "+err.Error()), false}:
+	case s.msgchan <- message{theme.ColorWrap(theme.ThemeStatusError, "错误: "+err.Error()), false}:
 		return
 
 	default:

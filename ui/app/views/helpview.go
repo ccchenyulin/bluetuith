@@ -75,9 +75,9 @@ func (h *helpView) showStatusHelp(page string) {
 
 	h.page = page
 	pages := map[string]string{
-		devicePage.String():     "Device Screen",
-		filePickerPage.String(): "File Picker",
-		progressPage.String():   "Progress View",
+		devicePage.String():     "设备界面",
+		filePickerPage.String(): "文件选择",
+		progressPage.String():   "进度视图",
 	}
 
 	items, ok := h.topics[pages[page]]
@@ -98,16 +98,16 @@ func (h *helpView) showStatusHelp(page string) {
 		for _, key := range item.Keys {
 			switch key {
 			case keybindings.KeyMenu, keybindings.KeySwitch:
-				group = "Open"
+				group = "打开"
 
 			case keybindings.KeyFilebrowserSelect, keybindings.KeyFilebrowserInvertSelection, keybindings.KeyFilebrowserSelectAll:
-				group = "Select"
+				group = "选择"
 
 			case keybindings.KeyProgressTransferSuspend, keybindings.KeyProgressTransferResume, keybindings.KeyProgressTransferCancel:
-				group = "Transfer"
+				group = "传输"
 
 			case keybindings.KeyDeviceConnect, keybindings.KeyDevicePair, keybindings.KeyAdapterToggleScan, keybindings.KeyAdapterTogglePower:
-				group = "Toggle"
+				group = "开关"
 			}
 		}
 		if group == "" {
@@ -160,7 +160,7 @@ func (h *helpView) showStatusHelp(page string) {
 func (h *helpView) showHelp() {
 	var row int
 
-	helpModal := h.modals.newModalWithTable("help", "Help", 40, 60)
+	helpModal := h.modals.newModalWithTable("help", "帮助", 40, 60)
 	helpModal.table.SetSelectionChangedFunc(func(row, _ int) {
 		if row == 1 {
 			helpModal.table.ScrollToBeginning()
@@ -229,53 +229,53 @@ type HelpData struct {
 // initHelpData initializes the help data for all the specified screens.
 func (h *helpView) initHelpData() {
 	h.topics = map[string][]HelpData{
-		"Device Screen": {
-			{"Menu", "Open the menu", []keybindings.Key{keybindings.KeyMenu}, true},
-			{"Switch", "Navigate between menus", []keybindings.Key{keybindings.KeySwitch}, true},
-			{"Navigation", "Navigate between devices/options", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
-			{"Power", "Toggle adapter power state", []keybindings.Key{keybindings.KeyAdapterTogglePower}, true},
-			{"Discoverable", "Toggle discoverable state", []keybindings.Key{keybindings.KeyAdapterToggleDiscoverable}, false},
-			{"Pairable", "Toggle pairable state", []keybindings.Key{keybindings.KeyAdapterTogglePairable}, false},
-			{"Scan", "Toggle scan (discovery state)", []keybindings.Key{keybindings.KeyAdapterToggleScan}, true},
-			{"Adapter", "Change adapter", []keybindings.Key{keybindings.KeyAdapterChange}, true},
-			{"Send", "Send files", []keybindings.Key{keybindings.KeyDeviceSendFiles}, true},
-			{"Network", "Connect to network", []keybindings.Key{keybindings.KeyDeviceNetwork}, false},
-			{"Progress", "Progress view", []keybindings.Key{keybindings.KeyProgressView}, false},
-			{"Player", "Show/Hide player", []keybindings.Key{keybindings.KeyPlayerShow, keybindings.KeyPlayerHide}, false},
-			{"Device Info", "Show device information", []keybindings.Key{keybindings.KeyDeviceInfo}, false},
-			{"Connect", "Toggle connection with selected device", []keybindings.Key{keybindings.KeyDeviceConnect}, true},
-			{"Pair", "Toggle pair with selected device", []keybindings.Key{keybindings.KeyDevicePair}, true},
-			{"Trust", "Toggle trust with selected device", []keybindings.Key{keybindings.KeyDeviceTrust}, false},
-			{"Remove", "Remove device from adapter", []keybindings.Key{keybindings.KeyDeviceRemove}, false},
-			{"Cancel", "Cancel operation", []keybindings.Key{keybindings.KeyCancel}, false},
-			{"Help", "Show help", []keybindings.Key{keybindings.KeyHelp}, true},
-			{"Quit", "Quit", []keybindings.Key{keybindings.KeyQuit}, false},
+		"设备界面": {
+			{"菜单", "打开菜单", []keybindings.Key{keybindings.KeyMenu}, true},
+			{"切换", "在菜单间切换", []keybindings.Key{keybindings.KeySwitch}, true},
+			{"移动", "在设备/选项间移动", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
+			{"电源", "开关适配器电源", []keybindings.Key{keybindings.KeyAdapterTogglePower}, true},
+			{"可被发现", "开关可被发现状态", []keybindings.Key{keybindings.KeyAdapterToggleDiscoverable}, false},
+			{"可配对", "开关可配对状态", []keybindings.Key{keybindings.KeyAdapterTogglePairable}, false},
+			{"扫描", "开关扫描（发现设备）", []keybindings.Key{keybindings.KeyAdapterToggleScan}, true},
+			{"适配器", "切换适配器", []keybindings.Key{keybindings.KeyAdapterChange}, true},
+			{"发送", "发送文件", []keybindings.Key{keybindings.KeyDeviceSendFiles}, true},
+			{"网络", "连接网络", []keybindings.Key{keybindings.KeyDeviceNetwork}, false},
+			{"进度", "进度视图", []keybindings.Key{keybindings.KeyProgressView}, false},
+			{"播放器", "显示/隐藏播放器", []keybindings.Key{keybindings.KeyPlayerShow, keybindings.KeyPlayerHide}, false},
+			{"设备信息", "显示设备信息", []keybindings.Key{keybindings.KeyDeviceInfo}, false},
+			{"连接", "连接/断开选中设备", []keybindings.Key{keybindings.KeyDeviceConnect}, true},
+			{"配对", "配对/取消配对选中设备", []keybindings.Key{keybindings.KeyDevicePair}, true},
+			{"信任", "信任/取消信任选中设备", []keybindings.Key{keybindings.KeyDeviceTrust}, false},
+			{"移除", "从适配器移除设备", []keybindings.Key{keybindings.KeyDeviceRemove}, false},
+			{"取消", "取消操作", []keybindings.Key{keybindings.KeyCancel}, false},
+			{"帮助", "显示帮助", []keybindings.Key{keybindings.KeyHelp}, true},
+			{"退出", "退出", []keybindings.Key{keybindings.KeyQuit}, false},
 		},
-		"File Picker": {
-			{"Navigation", "Navigate between directory entries", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
-			{"ChgDir Fwd/Back", "Enter/Go back a directory", []keybindings.Key{keybindings.KeyNavigateRight, keybindings.KeyNavigateLeft}, true},
-			{"One", "Select one file", []keybindings.Key{keybindings.KeyFilebrowserSelect}, true},
-			{"Invert", "Invert file selection", []keybindings.Key{keybindings.KeyFilebrowserInvertSelection}, true},
-			{"All", "Select all files", []keybindings.Key{keybindings.KeyFilebrowserSelectAll}, true},
-			{"Refresh", "Refresh current directory", []keybindings.Key{keybindings.KeyFilebrowserRefresh}, false},
-			{"Hidden", "Toggle hidden files", []keybindings.Key{keybindings.KeyFilebrowserToggleHidden}, false},
-			{"Confirm", "Confirm file(s) selection", []keybindings.Key{keybindings.KeyFilebrowserConfirmSelection}, true},
-			{"Exit", "Exit", []keybindings.Key{keybindings.KeyClose}, false},
+		"文件选择": {
+			{"移动", "在目录条目间移动", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
+			{"进入/返回目录", "进入目录 / 返回上级", []keybindings.Key{keybindings.KeyNavigateRight, keybindings.KeyNavigateLeft}, true},
+			{"单个", "选择单个文件", []keybindings.Key{keybindings.KeyFilebrowserSelect}, true},
+			{"反选", "反选文件", []keybindings.Key{keybindings.KeyFilebrowserInvertSelection}, true},
+			{"全部", "全选文件", []keybindings.Key{keybindings.KeyFilebrowserSelectAll}, true},
+			{"刷新", "刷新当前目录", []keybindings.Key{keybindings.KeyFilebrowserRefresh}, false},
+			{"隐藏文件", "显示/隐藏隐藏文件", []keybindings.Key{keybindings.KeyFilebrowserToggleHidden}, false},
+			{"确认", "确认选择", []keybindings.Key{keybindings.KeyFilebrowserConfirmSelection}, true},
+			{"退出", "退出", []keybindings.Key{keybindings.KeyClose}, false},
 		},
-		"Progress View": {
-			{"Navigation", "Navigate between transfers", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
-			{"Suspend", "Suspend transfer", []keybindings.Key{keybindings.KeyProgressTransferSuspend}, true},
-			{"Resume", "Resume transfer", []keybindings.Key{keybindings.KeyProgressTransferResume}, true},
-			{"Cancel", "Cancel transfer", []keybindings.Key{keybindings.KeyProgressTransferCancel}, true},
-			{"Exit", "Exit", []keybindings.Key{keybindings.KeyClose}, true},
+		"进度视图": {
+			{"移动", "在传输任务间移动", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, true},
+			{"挂起", "挂起传输", []keybindings.Key{keybindings.KeyProgressTransferSuspend}, true},
+			{"恢复", "恢复传输", []keybindings.Key{keybindings.KeyProgressTransferResume}, true},
+			{"取消", "取消传输", []keybindings.Key{keybindings.KeyProgressTransferCancel}, true},
+			{"退出", "退出", []keybindings.Key{keybindings.KeyClose}, true},
 		},
-		"Media Player": {
-			{"Play/Pause", "Toggle play/pause", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, false},
-			{"Next", "Next", []keybindings.Key{keybindings.KeyPlayerNext}, false},
-			{"Previous", "Previous", []keybindings.Key{keybindings.KeyPlayerPrevious}, false},
-			{"Rewind", "Rewind", []keybindings.Key{keybindings.KeyPlayerSeekBackward}, false},
-			{"Forward", "Fast forward", []keybindings.Key{keybindings.KeyPlayerSeekForward}, false},
-			{"Stop", "Stop", []keybindings.Key{keybindings.KeyPlayerStop}, false},
+		"媒体播放器": {
+			{"播放/暂停", "播放/暂停", []keybindings.Key{keybindings.KeyNavigateUp, keybindings.KeyNavigateDown}, false},
+			{"下一个", "下一个", []keybindings.Key{keybindings.KeyPlayerNext}, false},
+			{"上一个", "上一个", []keybindings.Key{keybindings.KeyPlayerPrevious}, false},
+			{"快退", "快退", []keybindings.Key{keybindings.KeyPlayerSeekBackward}, false},
+			{"快进", "快进", []keybindings.Key{keybindings.KeyPlayerSeekForward}, false},
+			{"停止", "停止", []keybindings.Key{keybindings.KeyPlayerStop}, false},
 		},
 	}
 }

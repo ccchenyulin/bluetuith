@@ -431,25 +431,25 @@ func (m *menuBarView) initOrderedOptions() {
 		menuAdapterName.String(): {
 			{
 				key:              keybindings.KeyAdapterTogglePower,
-				enabledText:      "On",
-				disabledText:     "Off",
+				enabledText:      "开",
+				disabledText:     "关",
 				initBeforeInvoke: true,
 			},
 			{
 				key:              keybindings.KeyAdapterToggleDiscoverable,
-				enabledText:      "On",
-				disabledText:     "Off",
+				enabledText:      "开",
+				disabledText:     "关",
 				initBeforeInvoke: true,
 			},
 			{
 				key:              keybindings.KeyAdapterTogglePairable,
-				enabledText:      "On",
-				disabledText:     "Off",
+				enabledText:      "开",
+				disabledText:     "关",
 				initBeforeInvoke: true,
 			},
 			{
 				key:          keybindings.KeyAdapterToggleScan,
-				disabledText: "Stop Scan",
+				disabledText: "停止扫描",
 			},
 			{
 				key: keybindings.KeyAdapterChange,
@@ -467,7 +467,7 @@ func (m *menuBarView) initOrderedOptions() {
 		menuDeviceName.String(): {
 			{
 				key:              keybindings.KeyDeviceConnect,
-				disabledText:     "Disconnect",
+				disabledText:     "断开",
 				initBeforeInvoke: true,
 			},
 			{
@@ -480,7 +480,7 @@ func (m *menuBarView) initOrderedOptions() {
 			},
 			{
 				key:              keybindings.KeyDeviceBlock,
-				disabledText:     "Unblock",
+				disabledText:     "解除阻止",
 				initBeforeInvoke: true,
 			},
 			{

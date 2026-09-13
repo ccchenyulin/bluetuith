@@ -22,7 +22,7 @@ func (v *viewOperation) startOperation(dofunc, cancel func()) {
 	defer v.lock.Unlock()
 
 	if v.cancel != nil {
-		v.root.status.InfoMessage("Operation still in progress", false)
+		v.root.status.InfoMessage("操作仍在进行中", false)
 		return
 	}
 

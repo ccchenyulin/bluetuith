@@ -53,7 +53,7 @@ func (f *filePickerView) Initialize() error {
 	infoTitle.SetDynamicColors(true)
 	infoTitle.SetTextAlign(tview.AlignCenter)
 	infoTitle.SetBackgroundColor(theme.GetColor(theme.ThemeBackground))
-	infoTitle.SetText(theme.ColorWrap(theme.ThemeText, "Select files to send", "::bu"))
+	infoTitle.SetText(theme.ColorWrap(theme.ThemeText, "选择要发送的文件", "::bu"))
 
 	f.pickerFlex = tview.NewFlex().
 		SetDirection(tview.FlexRow).
@@ -385,7 +385,7 @@ func (f *filePickerView) createDirList(dlist []fs.DirEntry, cdBack bool) {
 			f.markFileSelection(row, entry, f.checkFileSelected(filepath.Join(f.currentPath, name)))
 		}
 
-		f.title.SetText(theme.ColorWrap(theme.ThemeText, "Directory: "+f.currentPath))
+		f.title.SetText(theme.ColorWrap(theme.ThemeText, "目录: "+f.currentPath))
 
 		f.table.ScrollToBeginning()
 		f.table.SetSelectable(true, false)

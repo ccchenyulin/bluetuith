@@ -35,9 +35,9 @@ func newApp() *cli.App {
 
 	return &cli.App{
 		Name:                   "bluetuith",
-		Usage:                  "Bluetooth Manager.",
+		Usage:                  "蓝牙管理器。",
 		Version:                Version + " (" + Revision + ")",
-		Description:            "A Bluetooth manager for the terminal.",
+		Description:            "终端里的蓝牙管理器。",
 		DefaultCommand:         "bluetuith",
 		Copyright:              "(c) bluetuith-org.",
 		Compiled:               time.Now(),
@@ -48,7 +48,7 @@ func newApp() *cli.App {
 			&cli.BoolFlag{
 				Name:    "list-adapters",
 				Aliases: []string{"l"},
-				Usage:   "List available adapters.",
+				Usage:   "列出可用的适配器。",
 				Action: func(*cli.Context, bool) error {
 					var sb strings.Builder
 
@@ -64,7 +64,7 @@ func newApp() *cli.App {
 						return err
 					}
 
-					sb.WriteString("List of adapters:")
+					sb.WriteString("适配器列表：")
 					for _, adapter := range adapters {
 						sb.WriteString("\n")
 						sb.WriteString("- ")
@@ -80,25 +80,25 @@ func newApp() *cli.App {
 				Name:    "adapter",
 				Aliases: []string{"a"},
 				EnvVars: []string{"BLUETUITH_ADAPTER"},
-				Usage:   "Specify an adapter to use. (For example, hci0)",
+				Usage:   "指定要使用的适配器。（例如 hci0）",
 			},
 			&cli.StringFlag{
 				Name:    "receive-dir",
 				Aliases: []string{"r"},
 				EnvVars: []string{"BLUETUITH_RECEIVE_DIR"},
-				Usage:   "Specify a directory to store received files.",
+				Usage:   "指定接收文件的存放目录。",
 			},
 			&cli.StringFlag{
 				Name:    "gsm-apn",
 				Aliases: []string{"m"},
 				EnvVars: []string{"BLUETUITH_GSM_APN"},
-				Usage:   "Specify GSM APN to connect to. (Required for DUN)",
+				Usage:   "指定要连接的 GSM APN。（DUN 必需）",
 			},
 			&cli.StringFlag{
 				Name:    "gsm-number",
 				Aliases: []string{"b"},
 				EnvVars: []string{"BLUETUITH_GSM_NUMBER"},
-				Usage:   "Specify GSM number to dial. (Required for DUN)",
+				Usage:   "指定要拨打的 GSM 号码。（DUN 必需）",
 			},
 			&cli.StringFlag{
 				Name:    "adapter-states",
@@ -116,30 +116,30 @@ func newApp() *cli.App {
 				Name:    "no-warning",
 				Aliases: []string{"w"},
 				EnvVars: []string{"BLUETUITH_NO_WARNING"},
-				Usage:   "Do not display warnings when the application has initialized.",
+				Usage:   "程序初始化后不显示警告。",
 			},
 			&cli.BoolFlag{
 				Name:    "no-help-display",
 				Aliases: []string{"i"},
 				EnvVars: []string{"BLUETUITH_NO_HELP_DISPLAY"},
-				Usage:   "Do not display help keybindings in the application.",
+				Usage:   "不在界面中显示按键帮助。",
 			},
 			&cli.BoolFlag{
 				Name:    "confirm-on-quit",
 				Aliases: []string{"c"},
 				EnvVars: []string{"BLUETUITH_CONFIRM_ON_QUIT"},
-				Usage:   "Ask for confirmation before quitting the application.",
+				Usage:   "退出程序前请求确认。",
 			},
 			&cli.BoolFlag{
 				Name:    "disable-obex-services",
 				Aliases: []string{"o"},
 				EnvVars: []string{"BLUETUTITH_ENABLE_OBEX_SERVICES"},
-				Usage:   "Specify whether to disable OBEX services (like Object Push Transfers)",
+				Usage:   "指定是否禁用 OBEX 服务（如对象推送传输）",
 			},
 			&cli.BoolFlag{
 				Name:    "generate",
 				Aliases: []string{"g"},
-				Usage:   "Generate configuration.",
+				Usage:   "生成配置文件。",
 				Action: func(cliCtx *cli.Context, _ bool) error {
 					k := koanf.New(".")
 
@@ -215,7 +215,7 @@ func printUnsupportedFeatures(cfg *config.Config, featureSet *appfeatures.Featur
 		return
 	}
 
-	warn.WriteString("The following features are not available:")
+	warn.WriteString("以下功能不可用：")
 	for feature, errors := range featErrors {
 		warn.WriteString("\n")
 		warn.WriteString(feature.String())

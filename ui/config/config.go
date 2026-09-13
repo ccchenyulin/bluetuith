@@ -138,7 +138,7 @@ func (c *Config) FilePath(configFile string) (string, error) {
 		fd, err := os.Create(confPath)
 		fd.Close()
 		if err != nil {
-			return "", fmt.Errorf("Cannot create "+configFile+" file at %s", confPath)
+			return "", fmt.Errorf("无法创建 "+configFile+" file at %s", confPath)
 		}
 	}
 

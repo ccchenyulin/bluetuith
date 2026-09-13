@@ -68,7 +68,7 @@ func (p *progressView) Initialize() error {
 	title.SetDynamicColors(true)
 	title.SetTextAlign(tview.AlignLeft)
 	title.SetBackgroundColor(theme.GetColor(theme.ThemeBackground))
-	title.SetText(theme.ColorWrap(theme.ThemeText, "Progress View", "::bu"))
+	title.SetText(theme.ColorWrap(theme.ThemeText, "进度视图", "::bu"))
 
 	p.view = tview.NewTable()
 	p.view.SetSelectable(true, false)
@@ -161,7 +161,7 @@ func (p *progressView) show() {
 	}
 
 	if p.total.Load() == 0 {
-		p.status.InfoMessage("No transfers are in progress", false)
+		p.status.InfoMessage("没有进行中的传输", false)
 		return
 	}
 
@@ -199,7 +199,7 @@ func (p *progressView) newIndicator(props bluetooth.ObjectPushData, recv bool) *
 	}
 	if props.Filename == "" && props.Name == "" {
 		progressText = ""
-		name = "Unknown file transfer"
+		name = "未知文件传输"
 	}
 
 	title := fmt.Sprintf(" [::b]%s %s[-:-:-]", progressText, name)
@@ -391,7 +391,7 @@ func (p *progressView) suspendTransfer() {
 	}
 
 	if progress.recv {
-		p.status.InfoMessage("Cannot suspend receiving transfer", false)
+		p.status.InfoMessage("无法挂起接收中的传输", false)
 		return
 	}
 
@@ -407,7 +407,7 @@ func (p *progressView) resumeTransfer() {
 	}
 
 	if progress.recv {
-		p.status.InfoMessage("Cannot resume receiving transfer", false)
+		p.status.InfoMessage("无法恢复接收中的传输", false)
 		return
 	}
 

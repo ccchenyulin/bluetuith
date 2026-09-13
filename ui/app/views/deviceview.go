@@ -120,37 +120,39 @@ func (d *deviceView) showDetailedInfo() {
 		return
 	}
 
+	// 每行：{标识符（用于逻辑判断，不翻译）, 显示名称（界面文字）, 值}
 	props := [][]string{
-		{"Name", optGetValueString(device.Name)},
-		{"Alias", optGetValueString(device.Alias)},
-		{"Address", device.Address.String()},
-		{"Class", strconv.FormatUint(uint64(device.Class), 10)},
-		{"Adapter", assocAdapter.UniqueName},
-		{"Connected", optYesNo(device.Connected)},
-		{"Paired", optYesNo(device.Paired)},
-		{"Bonded", optYesNo(device.Bonded)},
-		{"Trusted", optYesNo(device.Trusted)},
-		{"Blocked", optYesNo(device.Blocked)},
-		{"LegacyPairing", yesno(device.LegacyPairing)},
+		{"Name", "名称", optGetValueString(device.Name)},
+		{"Alias", "别名", optGetValueString(device.Alias)},
+		{"Address", "地址", device.Address.String()},
+		{"Class", "类别", strconv.FormatUint(uint64(device.Class), 10)},
+		{"Adapter", "适配器", assocAdapter.UniqueName},
+		{"Connected", "已连接", optYesNo(device.Connected)},
+		{"Paired", "已配对", optYesNo(device.Paired)},
+		{"Bonded", "已绑定", optYesNo(device.Bonded)},
+		{"Trusted", "已信任", optYesNo(device.Trusted)},
+		{"Blocked", "已阻止", optYesNo(device.Blocked)},
+		{"LegacyPairing", "旧版配对", yesno(device.LegacyPairing)},
 	}
-	props = append(props, []string{"UUIDs", ""})
+	props = append(props, []string{"UUIDs", "UUID 列表", ""})
 
-	infoModal := d.modals.newModalWithTable("info", "Device Information", 40, 100)
+	infoModal := d.modals.newModalWithTable("info", "设备信息", 40, 100)
 	infoModal.table.SetSelectionChangedFunc(func(row, _ int) {
 		_, _, _, height := infoModal.table.GetRect()
 		infoModal.table.SetOffset(row-((height-1)/2), 0)
 	})
 
 	for i, prop := range props {
-		propName := prop[0]
-		propValue := prop[1]
+		propName := prop[0]      // 标识符：用于逻辑判断
+		displayName := prop[1]   // 界面显示名称
+		propValue := prop[2]
 
 		if propName == "Class" {
 			propValue += " (" + device.Type + ")"
 		}
 
 		infoModal.table.SetCell(
-			i, 0, tview.NewTableCell("[::b]"+propName+":").
+			i, 0, tview.NewTableCell("[::b]"+displayName+":").
 				SetExpansion(1).
 				SetAlign(tview.AlignLeft).
 				SetTextColor(theme.GetColor(theme.ThemeText)).
@@ -315,7 +317,7 @@ func (d *deviceView) setPropertyInfo(row int, deviceEvent bluetooth.DeviceEventD
 		}
 
 		if percentage, ok := deviceEvent.Percentage.Get(); ok && percentage > 0 {
-			appendProperty("Battery ")
+			appendProperty("电量 ")
 			sb.WriteString(strconv.FormatUint(uint64(percentage), 10))
 			sb.WriteString("%")
 		}
@@ -439,15 +441,15 @@ func (d *deviceView) event() {
 
 func yesno(val bool) string {
 	if !val {
-		return "no"
+		return "否"
 	}
 
-	return "yes"
+	return "是"
 }
 
 func optGetValueString(val optional.Optional[string]) string {
 	if val.IsZero() {
-		return "Not specified"
+		return "未指定"
 	}
 
 	return val.Value()
@@ -455,7 +457,7 @@ func optGetValueString(val optional.Optional[string]) string {
 
 func optYesNo(val optional.Optional[bool]) string {
 	if val.IsZero() {
-		return "Not specified"
+		return "未指定"
 	}
 
 	return yesno(val.Value())
