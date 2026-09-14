@@ -1,3 +1,28 @@
+> ## ⚠️ 本仓库说明
+>
+> **这是 [bluetuith-org/bluetuith](https://github.com/bluetuith-org/bluetuith) 的简体中文汉化版本（个人自用，非官方项目）。**
+>
+> | 项 | 说明 |
+> |---|---|
+> | 上游项目 | https://github.com/bluetuith-org/bluetuith |
+> | 本仓库性质 | 个人汉化，未向上游提交 PR |
+> | 汉化分支 | `chinese-i18n` |
+> | 汉化方式 | 直接翻译源码内界面字面量（上游无 i18n 框架） |
+> | 汉化范围 | 仅界面文字，未改动任何业务逻辑 |
+> | 原许可证 | 遵循上游 LICENSE（见仓库内 LICENSE 文件） |
+>
+> 上游更新后同步方法：
+> ```bash
+> git fetch upstream
+> git merge upstream/master
+> ```
+>
+> 另修正一处上游缺陷：`go.mod` 声明的 module 路径为 `github.com/bluetuith-org/bluetuith`，
+> 但全部 import 仍写 `github.com/darkhz/bluetuith`，导致上游代码无法 `go build`；
+> 本分支将 module 名改回实际 import 路径以恢复可编译。
+>
+> ---
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/darkhz/bluetuith)](https://goreportcard.com/report/github.com/darkhz/bluetuith) [![Packaging status](https://repology.org/badge/tiny-repos/bluetuith.svg)](https://repology.org/project/bluetuith/versions)
 
 ![demo](demo/demo.gif)
